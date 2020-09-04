@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			Alticator Live Code Preview
+		</title>
+		<link rel="stylesheet" href="/developer/w3.css">
+		<style>
+			body {height: 100%;}
+		</style>
+		<script src="/developer/live-code-preview/jquery.min.js"></script>
+		<script src="/developer/live-code-preview/app.js"></script>
+	</head>
+	<body class="w3-dark-gray">
+		<div class="w3-bar w3-blue">
+			<span class="w3-bar-item"><b>Alticator Live Code Preview</b></span>
+			<button onclick="runCode()" class="w3-bar-item w3-button w3-hover-green">
+				Run
+			</button>
+			<button id="maxButton" onclick="maximize()" class="w3-bar-item w3-button w3-hover-green">
+				Maximize Preview
+			</button>
+		</div>
+		<div class="w3-container">
+			<div class="w3-row">
+				<div class="w3-col m6" id="codeColumn">
+					<textarea id="code" class="w3-code w3-white" style="width: 100%; height: calc(100vh - 100px); resize: none;" autocorrect="off" spellcheck="false">Code Here</textarea>
+				</div>
+				<div class="w3-col m6 w3-container" id="previewColumn">
+					<iframe id="preview" class="w3-panel w3-white w3-border w3-border-blue" style="width: 100%; height: calc(100vh - 100px); overflow: auto; padding: 0;">Press "Run" on the navigation bar to view result</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
