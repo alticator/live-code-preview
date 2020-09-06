@@ -9,28 +9,84 @@
 		<style>
 			body {height: 100%;}
 		</style>
-		<script src="/developer/live-code-preview/jquery.min.js"></script>
-		<script src="/developer/live-code-preview/app.js"></script>
 	</head>
 	<body class="w3-dark-gray">
+		<div id="modal-clear" class="w3-modal">
+			<div class="w3-modal-content w3-animate-zoom">
+				<header class="w3-container w3-blue">
+					<span class="w3-button w3-display-topright" onclick="$('#modal-clear').hide()">&times;</span>
+					<h1>
+						Clear All Code
+					</h1>
+				</header>
+				<div class="w3-container w3-padding w3-white">
+					<p>
+						Are you sure you want to delete all code?
+					</p>
+					<div class="w3-center">
+						<button onclick="$('#modal-clear').hide()" class="w3-button w3-blue">
+							No
+						</button>
+						<button onclick="clearAll()" class="w3-button w3-red">
+							Yes
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="w3-bar w3-blue">
 			<span class="w3-bar-item"><b>Alticator Live Code Preview</b></span>
-			<button onclick="runCode()" class="w3-bar-item w3-button w3-hover-green">
+			<button class="w3-bar-item w3-button w3-hover-green" onclick="addTemplate()">
+				Add Template
+			</button>
+			<button class="w3-bar-item w3-button w3-hover-green" onclick="$('#modal-clear').show()">
+				Clear
+			</button>
+			<div class="w3-dropdown-hover">
+				<button class="w3-button w3-hover-green">
+					View
+				</button>
+				<div class="w3-dropdown-content w3-bar-block w3-card w3-animate-opacity">
+					<button id="maxButton" class="w3-bar-item w3-button w3-blue w3-hover-green" onclick="mainView()">
+						Default
+					</button>
+					<button class="w3-bar-item w3-button w3-blue w3-hover-green" onclick="focusView()">
+						Focus
+					</button>
+					<button id="maxButton" class="w3-bar-item w3-button w3-blue w3-hover-green" onclick="maximize()">
+						Maximized
+					</button>
+					<button class="w3-bar-item w3-button w3-blue w3-hover-green" onclick="mobileView()">
+						Mobile
+					</button>
+					<button class="w3-bar-item w3-button w3-blue w3-hover-green" onclick="wideView()">
+						Wide
+					</button>
+				</div>
+			</div>
+			<button onclick="runCode()" class="w3-bar-item w3-button w3-indigo w3-hover-green">
 				Run
 			</button>
-			<button id="maxButton" onclick="maximize()" class="w3-bar-item w3-button w3-hover-green">
-				Maximize Preview
-			</button>
+		</div>
+		<div id="restore-question" style="display: none;" class="w3-margin w3-panel w3-card w3-pale-blue w3-leftbar w3-border-blue w3-display-container w3-animate-left">
+				<span class="w3-button w3-display-topright" onclick="$('#restore-question').hide()">&times;</span>
+				<p>
+					Code Cleared.
+					<button class="w3-button w3-blue w3-hover-green" onclick="restoreCode()">Restore</button>
+					<button class="w3-button w3-blue w3-hover-green" onclick="$('#restore-question').hide()">Dismiss</button>
+				</p>
 		</div>
 		<div class="w3-container">
 			<div class="w3-row">
 				<div class="w3-col m6" id="codeColumn">
-					<textarea id="code" class="w3-code w3-white" style="width: 100%; height: calc(100vh - 100px); resize: none;" autocorrect="off" spellcheck="false">Code Here</textarea>
+					<textarea id="code" class="w3-code w3-white" style="width: 100%; height: calc(100vh - 100px); resize: none;" autocorrect="off" spellcheck="false" placeholder="Code..."></textarea>
 				</div>
-				<div class="w3-col m6 w3-container" id="previewColumn">
-					<iframe id="preview" class="w3-panel w3-white w3-border w3-border-blue" style="width: 100%; height: calc(100vh - 100px); overflow: auto; padding: 0;">Press "Run" on the navigation bar to view result</div>
+				<div class="w3-col m6" id="previewColumn">
+					<iframe id="preview" class="w3-panel w3-white w3-border w3-border-blue" style="width: 100%; height: calc(100vh - 100px); overflow: auto; padding: 0; margin-right: 0;"></iframe>
 				</div>
 			</div>
 		</div>
+		<script src="jquery.min.js"></script>
+		<script src="app.js"></script>
 	</body>
 </html>
