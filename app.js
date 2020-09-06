@@ -12,6 +12,8 @@ window.onbeforeunload = function() {
 
 var view = 1;
 var codeSave;
+document.onkeydown = processKeydown;
+document.onkeyup = processKeyup;
 
 function clearAll() {
 	codeSave = $("#code").val();
@@ -97,3 +99,27 @@ $(document).delegate('#code', 'keydown', function(e) {
     this.selectionEnd = start + 1;
   }
 });
+
+var keyMap = {control: false, r: false};
+
+function processKeydown(event) {
+	if (event.key == "Control") {
+		console.log(keyMap);
+		keyMap.control = true;
+	}
+	else if (event.key == "r") {
+		keyMap.r = true;
+	}
+	if (keyMap.control && keyMap.r) {
+		runCode();
+	}
+}
+
+function processKeyup(event) {
+	if (event.key == "Control") {
+		keyMap.control = false;
+	}
+	else if (event.key == "r") {
+		keyMap.r = false;
+	}
+}
